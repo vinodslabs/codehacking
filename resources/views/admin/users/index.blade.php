@@ -7,6 +7,7 @@
     <thead>
         <tr>
             <th>ID</th>
+            <th>Photo</th>
             <th>Name</th>
             <th>Email</th>
             <th>Role</th>
@@ -20,8 +21,10 @@
         @if ($users)
             @foreach ($users as $user)
                 <tr>
+                    
                     <td>{{$user->id}}</td>
-                    <td>{{$user->name}}</td>
+                    <td><img src="{{$user->photo? $user->photo->file:'http://placehold.it/50x50'}}" height="50" width="50" class="img-responsive img-rounded" /></td>
+                    <td><a href="{{ route('admin.users.edit',$user->id) }}">{{$user->name}}</a> </td>
                     <td>{{$user->email}}</td>
                     <td>{{@isset($user->role->name)?$user->role->name:'Not Defined'}}</td>
                     <td>{{$user->is_active==1?'Active':'In-Acitve'}}</td>
